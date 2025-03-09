@@ -6,6 +6,7 @@
 {% block body %}
 <table>
     <tr>
+        <th>عکس</th>
         <th>اسم محصول</th>
         <th>توضیحات</th>
         <th>قیمت</th>
@@ -14,6 +15,7 @@
     </tr>
     {% for p in products %}
     <tr>
+        <td><img style="width: 20px;" src="/static/cover/{{p.id}}.jpg" alt=""></td>
         <td>{{p.name}}</td>
         <td>{{p.description}}</td>
         <td>{{p.price}}</td>
@@ -24,10 +26,11 @@
 </table>
 
 
-<form action="#" method="post">
+<form action="#" method="post" enctype="multipart/form-data">
     <!-- این خط زیر برای امنیت اطلاعات ارسالی است -->
     <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
     
+    <label for="">عکس:</label><input type="file" name="cover"><br>
     <input type="text" name="name" placeholder="نام محصول"><br>
     <textarea name="description" placeholder="توضیحات"></textarea><br>
     <input type="number" name="price" placeholder="قیمت"><br>
